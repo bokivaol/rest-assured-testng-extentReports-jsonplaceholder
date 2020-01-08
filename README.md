@@ -10,7 +10,7 @@ You can use this project as a quick starting point for your own projects.
 
 Git:
 
-    git clone https://github.com/bokivaol/serenity-junit-jsonplaceholder.git
+    git clone https://github.com/bokivaol/rest-assured-testng-jsonplaceholder.git
     cd serenity-junit-jsonplaceholder
 
 
