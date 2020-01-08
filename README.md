@@ -14,7 +14,7 @@ Git:
     cd serenity-junit-jsonplaceholder
 
 
-Or simply [download a zip](https://github.com/bokivaol/serenity-junit-jsonplaceholder/archive/master.zip) file.
+Or simply [download a zip](https://github.com/bokivaol/rest-assured-testng-jsonplaceholder/archive/master.zip) file.
 
 ## Use Maven
 
