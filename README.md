@@ -14,7 +14,7 @@ For the test automation I used:
 Git:
 
     git clone https://github.com/bokivaol/rest-assured-testng-extentReports-jsonplaceholder.git
-    cd rest-assured-testng-jsonplaceholder
+    cd rest-assured-testng-extentReports-jsonplaceholder
 
 
 Or simply [download a zip](https://github.com/bokivaol/rest-assured-testng-extentReports-jsonplaceholder/archive/master.zip) file.
