@@ -1,4 +1,4 @@
-# Rest-Assured, TestNG and Gradle JSONPlaceholder API Test project
+# Rest-Assured, TestNG, Gradle and Extent Reports JSONPlaceholder API Test project
 
 
 This is JSONPlaceholder API test project.
@@ -7,16 +7,17 @@ For the test automation I used:
 - Java 11.0.5 LTS
 - TestNG 7.1.0
 - Gradle 5.3.1
+- Extent Reports 4.1.1
 
 ## Get the code
 
 Git:
 
-    git clone https://github.com/bokivaol/rest-assured-testng-jsonplaceholder.git
+    git clone https://github.com/bokivaol/rest-assured-testng-extentReports-jsonplaceholder.git
     cd rest-assured-testng-jsonplaceholder
 
 
-Or simply [download a zip](https://github.com/bokivaol/rest-assured-testng-jsonplaceholder/archive/master.zip) file.
+Or simply [download a zip](https://github.com/bokivaol/rest-assured-testng-extentReports-jsonplaceholder/archive/master.zip) file.
 
 
 ## Use Gradle on Windows
