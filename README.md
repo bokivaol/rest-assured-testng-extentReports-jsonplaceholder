@@ -1,4 +1,4 @@
-# Serenity JUnit Starter project
+# Rest-Assured, TestNG and Gradle JSONPlaceholder API Test project
 
 
 This is the simplest possible build script setup for Serenity BDD using Java. 
@@ -11,7 +11,7 @@ You can use this project as a quick starting point for your own projects.
 Git:
 
     git clone https://github.com/bokivaol/rest-assured-testng-jsonplaceholder.git
-    cd serenity-junit-jsonplaceholder
+    cd rest-assured-testng-jsonplaceholder
 
 
 Or simply [download a zip](https://github.com/bokivaol/rest-assured-testng-jsonplaceholder/archive/master.zip) file.
