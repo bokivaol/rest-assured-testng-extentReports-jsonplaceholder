@@ -1,10 +1,9 @@
 package com.jsonplaceholder.tests.steps;
 
 import com.jsonplaceholder.tests.common.CommonMethods;
-import net.thucydides.core.annotations.Step;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import net.serenitybdd.rest.SerenityRest;
 import org.apache.http.HttpStatus;
 
 /**
@@ -14,9 +13,8 @@ public class GetPostsSteps {
 
     private Response response;
 
-    @Step("Call \"/posts\"")
     public void getPostsRequest(){
-        response = SerenityRest
+        response = RestAssured
                 .given()
                 .contentType(ContentType.JSON)
                 .when()
@@ -29,7 +27,6 @@ public class GetPostsSteps {
                 .response();
     }
 
-    @Step("Count all blog post received in response")
     public int countAllPosts(){
         int numberOfPosts = CommonMethods.countJsonObjectsInResponse(response);
         return numberOfPosts;

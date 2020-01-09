@@ -1,51 +1,62 @@
-defaultTasks 'clean','test','aggregate'
-
 repositories {
     mavenLocal()
     jcenter()
 }
 
-buildscript {
-    repositories {
-        mavenLocal()
-        jcenter()
-    }
-    dependencies {
-        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.81")
-    }
-}
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'net.serenity-bdd.aggregator'
+
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-ext {
-    slf4jVersion = '1.7.7'
-    serenityCoreVersion = '2.0.81'
-    junitVersion = '4.12'
-    assertJVersion = '3.8.0'
-    logbackVersion = '1.2.3'
+//task testNG(type: Test) {
+//    useTestNG {
+//        listeners << 'org.testng.reporters.EmailableReporter'
+//        listeners << 'org.testng.reporters.FailedReporter'
+//        reports.html.enabled = false
+//    }
+//    reports.html.destination = file("$buildDir/reports/testng")
+//}
+//
+//test {
+//    reports.html.destination = file("$buildDir/reports/test")
+//
+//    dependsOn testNG
+//}
+
+test {
+    useTestNG(){
+        listeners << 'org.testng.reporters.EmailableReporter'
+        listeners << 'org.testng.reporters.FailedReporter'
+        reports.html.enabled = false
+        reports.html.destination = file("$buildDir/reports/testngReports")
+    }
 }
 
 dependencies {
-    compile "ch.qos.logback:logback-classic:${logbackVersion}"
-    compile group: 'net.serenity-bdd', name: 'serenity-rest-assured', version: '2.0.81'
+// Rest Assured
+    testImplementation 'io.rest-assured:rest-assured:4.1.2'
 
-    testCompile "net.serenity-bdd:serenity-core:${serenityCoreVersion}",
-                "net.serenity-bdd:serenity-junit:${serenityCoreVersion}",
-                "junit:junit:${junitVersion}",
-                "org.assertj:assertj-core:${assertJVersion}"
+    // Rest Assured JsonPath
+    testImplementation 'io.rest-assured:json-path:4.1.2'
+
+    // Rest Assured JSON Schema Validation
+    testImplementation 'io.rest-assured:json-schema-validator:4.1.2'
+
+    // Rest Assured XmlPath
+    testImplementation 'io.rest-assured:xml-path:4.1.2'
+
+    // Rest Assured Spring Mock Mvc
+    testImplementation 'io.rest-assured:spring-mock-mvc:4.1.2'
+
+    // https://mvnrepository.com/artifact/org.testng/testng
+    testCompile group: 'org.testng', name: 'testng', version: '7.1.0'
+
+    // https://mvnrepository.com/artifact/org.assertj/assertj-core
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
+
+    // https://mvnrepository.com/artifact/com.beust/jcommander
+    compile group: 'com.beust', name: 'jcommander', version: '1.78'
 }
-
-test {
-    testLogging.showStandardStreams = true
-    systemProperties System.getProperties()
-}
-
-gradle.startParameter.continueOnFailure = true
-
-test.finalizedBy(aggregate)

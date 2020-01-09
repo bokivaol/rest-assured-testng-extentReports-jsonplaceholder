@@ -4,33 +4,18 @@ import com.jsonplaceholder.tests.BaseApiTest;
 import com.jsonplaceholder.tests.models.PutUpdatePostRequestAndResponseModel;
 import com.jsonplaceholder.tests.steps.*;
 import io.restassured.response.Response;
-import net.thucydides.core.annotations.Steps;
 import org.assertj.core.api.SoftAssertions;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 /**
  * Created by @Boki on Jan, 2020
  */
 public class JsonPlaceholderTests extends BaseApiTest {
 
-    @Steps
-    GetPostsSteps getPostsSteps;
-
-    @Steps
-    GetPostsByUserIdSteps getPostsByUserIdSteps;
-
-    @Steps
-    PutUpdatePostSteps putUpdatePostSteps;
-
-    @Steps
-    GetOnePostSteps getOnePostSteps;
-
-    @Steps
-    DeleteAllPostsAtOnceSteps deleteAllPostsAtOnceSteps;
-
     @Test
     public void T1_get_callAll100BlogPosts_all100BlogPostsAreReceivedInResponse() {
         SoftAssertions softAssertions = new SoftAssertions();
+        GetPostsSteps getPostsSteps = new GetPostsSteps();
 
 //        Run GET request
         getPostsSteps.getPostsRequest();
@@ -47,6 +32,7 @@ public class JsonPlaceholderTests extends BaseApiTest {
     public void T1_get_callAll10BlogPostsWrittenByUserId5_all10BlogPostsWrittenByUserId5AreReceivedInResponse() {
         int userId = 5;
         SoftAssertions softAssertions = new SoftAssertions();
+        GetPostsByUserIdSteps getPostsByUserIdSteps = new GetPostsByUserIdSteps();
 
 //        Run GET request
         getPostsByUserIdSteps.getPostsByUserId(userId);
@@ -61,8 +47,9 @@ public class JsonPlaceholderTests extends BaseApiTest {
     }
 
     @Test
-    public void T3_put_idInPostsBodyPayloadIsStringNotInt_blogPostIsSuccessfullyUpdated() {
+    public void T3_put_idInPostsBodyPayloadIsNumberAsStringNotAsInt_blogPostIsSuccessfullyUpdated() {
         SoftAssertions softAssertions = new SoftAssertions();
+        PutUpdatePostSteps putUpdatePostSteps = new PutUpdatePostSteps();
 
 //        Values of the payloadPostId and resourcePostId must be the same, but the data type is different.
         String bodyPayloadPostId = "1";
@@ -101,6 +88,7 @@ public class JsonPlaceholderTests extends BaseApiTest {
     @Test
     public void T4_get_zeroAsBlogPostIdInResourceUri_statusCodeIs404AndEmptyJsonIsReceivedInResponse() {
         SoftAssertions softAssertions = new SoftAssertions();
+        GetOnePostSteps getOnePostSteps = new GetOnePostSteps();
 
         int resourcePostId = 0;
 
@@ -122,6 +110,7 @@ public class JsonPlaceholderTests extends BaseApiTest {
     public void T5_delete_deleteAtOnceAllBlogPostsUnderPostsCollectionResource_receivedAnErrorAndNothingIsDeleted() {
 
         SoftAssertions softAssertions = new SoftAssertions();
+        DeleteAllPostsAtOnceSteps deleteAllPostsAtOnceSteps = new DeleteAllPostsAtOnceSteps();
 
 //        Run DELETE request
         deleteAllPostsAtOnceSteps.deleteAllPostsRequest();

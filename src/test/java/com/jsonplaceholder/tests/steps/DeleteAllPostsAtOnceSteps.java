@@ -1,9 +1,8 @@
 package com.jsonplaceholder.tests.steps;
 
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import net.serenitybdd.rest.SerenityRest;
-import net.thucydides.core.annotations.Step;
 import org.apache.http.HttpStatus;
 
 /**
@@ -13,9 +12,8 @@ public class DeleteAllPostsAtOnceSteps {
 
     private Response response;
 
-    @Step("Get particular blog post")
     public void deleteAllPostsRequest(){
-        response = SerenityRest
+        response = RestAssured
                 .given()
                 .contentType(ContentType.JSON)
                 .when()
