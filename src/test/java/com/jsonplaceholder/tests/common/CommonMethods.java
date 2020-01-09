@@ -1,5 +1,7 @@
 package com.jsonplaceholder.tests.common;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import io.restassured.response.Response;
 
 import java.util.List;
@@ -13,5 +15,15 @@ public class CommonMethods {
         List<String> jresponse = response.jsonPath().getList("id");
         int numberOfPosts = jresponse.size();
         return numberOfPosts;
+    }
+
+    public static ExtentReports getExtentReportInstance(){
+
+        ExtentHtmlReporter htmlReport = new ExtentHtmlReporter("build/reports/extentReports/ExtentReport.html");
+
+        ExtentReports extentReports = new ExtentReports();
+        extentReports.attachReporter(htmlReport);
+
+        return extentReports;
     }
 }

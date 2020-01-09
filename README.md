@@ -27,5 +27,5 @@ Open a command window and run:
 
 ## Viewing the reports
 
-The command provided above will produce a TestNG test report in the `build/reports/testngReports` directory. Open `emailable-report.html` in Chrome and take a look!
+The command provided above will produce a TestNG test report in the `build/reports/extentReports` directory. Open `ExtentReport.html` in Chrome and take a look!
 

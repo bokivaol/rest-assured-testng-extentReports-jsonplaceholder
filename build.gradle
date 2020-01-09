@@ -11,6 +11,7 @@ apply plugin: 'idea'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+// Creating task for Gradle
 //task testNG(type: Test) {
 //    useTestNG {
 //        listeners << 'org.testng.reporters.EmailableReporter'
@@ -57,6 +58,6 @@ dependencies {
     // https://mvnrepository.com/artifact/org.assertj/assertj-core
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
 
-    // https://mvnrepository.com/artifact/com.beust/jcommander
-    compile group: 'com.beust', name: 'jcommander', version: '1.78'
+    // https://mvnrepository.com/artifact/com.aventstack/extentreports
+    compile group: 'com.aventstack', name: 'extentreports', version: '4.1.1'
 }

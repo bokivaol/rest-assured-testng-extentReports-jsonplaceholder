@@ -1,16 +1,23 @@
 package com.jsonplaceholder.tests.apiTests;
 
+import com.aventstack.extentreports.Status;
 import com.jsonplaceholder.tests.BaseApiTest;
 import com.jsonplaceholder.tests.models.PutUpdatePostRequestAndResponseModel;
 import com.jsonplaceholder.tests.steps.*;
 import io.restassured.response.Response;
 import org.assertj.core.api.SoftAssertions;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  * Created by @Boki on Jan, 2020
  */
 public class JsonPlaceholderTests extends BaseApiTest {
+
+    @BeforeMethod
+    public void beforeMethod(){
+        extentTest = extentReports.createTest("JSONPlaceholder API automated tests");
+    }
 
     @Test
     public void T1_get_callAll100BlogPosts_all100BlogPostsAreReceivedInResponse() {
@@ -19,6 +26,7 @@ public class JsonPlaceholderTests extends BaseApiTest {
 
 //        Run GET request
         getPostsSteps.getPostsRequest();
+        extentTest.log(Status.INFO, "GET request is sent and all 100 blog posts are received and stored successfully.");
 
 //        Assertions starting point
         softAssertions.assertThat(getPostsSteps.getResponse().getStatusCode()).as("Status code is 200.")
@@ -36,6 +44,7 @@ public class JsonPlaceholderTests extends BaseApiTest {
 
 //        Run GET request
         getPostsByUserIdSteps.getPostsByUserId(userId);
+        extentTest.log(Status.INFO, "GET request is sent and all blog posts written by UserId=5 are received and stored successfully.");
 
 //        Assertions starting point
         softAssertions.assertThat(getPostsByUserIdSteps.getResponse().getStatusCode()).as("Status code is 200.")
@@ -63,9 +72,11 @@ public class JsonPlaceholderTests extends BaseApiTest {
         putUpdatePostRequestPayload.setTitle(title);
         putUpdatePostRequestPayload.setId(bodyPayloadPostId);
         putUpdatePostRequestPayload.setUserId(userId);
+        extentTest.log(Status.INFO, "Request body payload is created.");
 
 //        Run PUT request
         putUpdatePostSteps.callUpdatePostByPostId(resourcePostId, putUpdatePostRequestPayload);
+        extentTest.log(Status.INFO, "PUT request is sent. Blog post is successfully updated. Response is received and stored successfully.");
 
 //        Serialized response
         PutUpdatePostRequestAndResponseModel putUpdatePostResponse = putUpdatePostSteps.SerializePutUpdateResponse();
@@ -94,6 +105,7 @@ public class JsonPlaceholderTests extends BaseApiTest {
 
 //        Run GET request
         getOnePostSteps.getPostByPostId(resourcePostId);
+        extentTest.log(Status.INFO, "GET request with 0 as blogPostId in resource URI is sent. Response is received and stored successfully.");
 
         Response response = getOnePostSteps.getResponse();
 
@@ -108,12 +120,12 @@ public class JsonPlaceholderTests extends BaseApiTest {
 
     @Test
     public void T5_delete_deleteAtOnceAllBlogPostsUnderPostsCollectionResource_receivedAnErrorAndNothingIsDeleted() {
-
         SoftAssertions softAssertions = new SoftAssertions();
         DeleteAllPostsAtOnceSteps deleteAllPostsAtOnceSteps = new DeleteAllPostsAtOnceSteps();
 
 //        Run DELETE request
         deleteAllPostsAtOnceSteps.deleteAllPostsRequest();
+        extentTest.log(Status.INFO, "Delete request is sent. Response is received and stored.");
 
         Response response = deleteAllPostsAtOnceSteps.getResponse();
 
