@@ -9,7 +9,7 @@
                     <include name="T1_get_callAll100BlogPosts_all100BlogPostsAreReceivedInResponse"/>
                     <include
                             name="T1_get_callAll10BlogPostsWrittenByUserId5_all10BlogPostsWrittenByUserId5AreReceivedInResponse"/>
-                    <include name="T3_put_idInPostsBodyPayloadIsStringNotInt_blogPostIsSuccessfullyUpdated"/>
+                    <include name="T3_put_idInPostsBodyPayloadIsNumberAsStringNotAsInt_blogPostIsSuccessfullyUpdated"/>
                     <include
                             name="T4_get_zeroAsBlogPostIdInResourceUri_statusCodeIs404AndEmptyJsonIsReceivedInResponse"/>
                     <include
