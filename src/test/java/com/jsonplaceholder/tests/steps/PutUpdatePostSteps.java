@@ -27,6 +27,21 @@ public class PutUpdatePostSteps {
                 .response();
     }
 
+    public void callUpdateNonexistentResource(String resourcePostId, PutUpdatePostRequestAndResponseModel bodyPayload){
+        response = RestAssured
+                .given()
+                .contentType(ContentType.JSON)
+                .when()
+                .body(bodyPayload)
+                .put("/posts" + "/" + resourcePostId)
+                .then()
+//                .statusCode(HttpStatus.SC_NOT_FOUND)
+                .log()
+                .ifValidationFails()
+                .extract()
+                .response();
+    }
+
     public PutUpdatePostRequestAndResponseModel SerializePutUpdateResponse(){
         PutUpdatePostRequestAndResponseModel putRespModel = response
                 .then()

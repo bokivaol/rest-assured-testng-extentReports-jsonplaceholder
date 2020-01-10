@@ -26,6 +26,7 @@ public class JsonPlaceholderTests extends BaseApiTest {
 
 //        Run GET request
         getPostsSteps.getPostsRequest();
+
         extentTest.log(Status.INFO, "GET request is sent and all 100 blog posts are received and stored successfully.");
 
 //        Assertions starting point
@@ -134,6 +135,40 @@ public class JsonPlaceholderTests extends BaseApiTest {
                 .isEqualTo(404);
         softAssertions.assertThat(response.getBody().asString()).as("Body")
                 .isEqualTo("{}");
+
+        softAssertions.assertAll();
+    }
+
+    @Test
+    public void T5_put_updateNonexistentResource_resourceNotFound() {
+        SoftAssertions softAssertions = new SoftAssertions();
+        PutUpdatePostSteps putUpdatePostSteps = new PutUpdatePostSteps();
+
+//        Values of the payloadPostId and resourcePostId must be the same, but the data type is different.
+        String bodyPayloadPostId = "1";
+        String stringAsResourcePostId = "a";
+        int userId = 1;
+        String title = "Little";
+        String body = "Wing";
+
+        PutUpdatePostRequestAndResponseModel putUpdatePostRequestPayload = new PutUpdatePostRequestAndResponseModel();
+        putUpdatePostRequestPayload.setBody(body);
+        putUpdatePostRequestPayload.setTitle(title);
+        putUpdatePostRequestPayload.setId(bodyPayloadPostId);
+        putUpdatePostRequestPayload.setUserId(userId);
+        extentTest.log(Status.INFO, "Request body payload is created.");
+
+//        Run PUT request
+        putUpdatePostSteps.callUpdateNonexistentResource(stringAsResourcePostId, putUpdatePostRequestPayload);
+        if (putUpdatePostSteps.getResponse().getStatusCode() != 404){
+            extentTest.log(Status.FAIL, putUpdatePostSteps.getResponse().asString());
+        } else {
+            extentTest.log(Status.INFO, "PUT request is sent. Blog post is successfully updated. Response is received and stored successfully.");
+        }
+
+//        Assertions starting point
+        softAssertions.assertThat(putUpdatePostSteps.getResponse().getStatusCode()).as("Status code is 404.")
+                .isEqualTo(404);
 
         softAssertions.assertAll();
     }
