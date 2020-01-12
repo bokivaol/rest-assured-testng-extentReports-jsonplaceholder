@@ -119,32 +119,32 @@ public class JsonPlaceholderTests extends BaseApiTest {
         softAssertions.assertAll();
     }
 
+//    @Test
+//    public void T5_delete_deleteAtOnceAllBlogPostsUnderPostsCollectionResource_receivedAnErrorAndNothingIsDeleted() {
+//        SoftAssertions softAssertions = new SoftAssertions();
+//        DeleteAllPostsAtOnceSteps deleteAllPostsAtOnceSteps = new DeleteAllPostsAtOnceSteps();
+//
+////        Run DELETE request
+//        deleteAllPostsAtOnceSteps.deleteAllPostsRequest();
+//        extentTest.log(Status.INFO, "Delete request is sent. Response is received and stored.");
+//
+//        Response response = deleteAllPostsAtOnceSteps.getResponse();
+//
+////        Assertions starting point
+//        softAssertions.assertThat(response.getStatusCode()).as("Status code is 404.")
+//                .isEqualTo(404);
+//        softAssertions.assertThat(response.getBody().asString()).as("Body")
+//                .isEqualTo("{}");
+//
+//        softAssertions.assertAll();
+//    }
+
     @Test
-    public void T5_delete_deleteAtOnceAllBlogPostsUnderPostsCollectionResource_receivedAnErrorAndNothingIsDeleted() {
-        SoftAssertions softAssertions = new SoftAssertions();
-        DeleteAllPostsAtOnceSteps deleteAllPostsAtOnceSteps = new DeleteAllPostsAtOnceSteps();
-
-//        Run DELETE request
-        deleteAllPostsAtOnceSteps.deleteAllPostsRequest();
-        extentTest.log(Status.INFO, "Delete request is sent. Response is received and stored.");
-
-        Response response = deleteAllPostsAtOnceSteps.getResponse();
-
-//        Assertions starting point
-        softAssertions.assertThat(response.getStatusCode()).as("Status code is 404.")
-                .isEqualTo(404);
-        softAssertions.assertThat(response.getBody().asString()).as("Body")
-                .isEqualTo("{}");
-
-        softAssertions.assertAll();
-    }
-
-    @Test
-    public void T5_put_updateNonexistentResource_resourceNotFound() {
+    public void T5_put_updateDataUnderInvalidResourceId_userGetAnErrorMsgThatResourceIsNotFound() {
         SoftAssertions softAssertions = new SoftAssertions();
         PutUpdatePostSteps putUpdatePostSteps = new PutUpdatePostSteps();
 
-//        Values of the payloadPostId and resourcePostId must be the same, but the data type is different.
+//        Resource is letter.
         String bodyPayloadPostId = "1";
         String stringAsResourcePostId = "a";
         int userId = 1;
