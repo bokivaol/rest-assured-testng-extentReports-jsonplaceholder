@@ -1,4 +1,3 @@
-# Rest-Assured, TestNG, Gradle and Extent Reports JSONPlaceholder API Test project
-
+### Application code
 
 These packages generally contain application code.
